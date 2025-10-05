@@ -1,4 +1,4 @@
-# 🔥 Limbo - MCP Aggregator
+# Limbo - MCP Aggregator
 
 > Give your AI assistant extra limbs. Dynamically load MCP tools on-demand.
 
@@ -8,7 +8,7 @@
 
 Limbo is a meta-MCP server that lets AI assistants install and manage their own tools dynamically. No restarts, no manual configuration—just ask.
 
-## 🎯 The Problem
+## The Problem
 
 Setting up Model Context Protocol (MCP) tools is tedious:
 
@@ -30,7 +30,7 @@ Limbo aggregates multiple MCP servers into one unified interface and lets your A
 
 **Think: Package manager, but for AI capabilities.**
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Docker (Recommended)
 
@@ -59,7 +59,7 @@ pip install -e .
 limbo serve --http
 ```
 
-## 🎮 Usage
+## Usage
 
 ### Stdio Mode (for Claude Desktop, Cursor, etc.)
 
@@ -79,7 +79,7 @@ limbo serve --http --port 8000
 limbo serve --hybrid
 ```
 
-## 🛠️ Example Workflow
+## Example Workflow
 
 **Without Limbo:**
 
@@ -98,7 +98,7 @@ AI: *calls limbo_add_server()* → Tool installed
 AI: "Done. Which file do you need?"
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────┐
@@ -117,7 +117,7 @@ AI: "Done. Which file do you need?"
                │         └─ [AI installs more as needed]
 ```
 
-## 📦 Management Tools
+## Management Tools
 
 Once connected, Limbo provides 16 management tools:
 
@@ -140,7 +140,7 @@ Once connected, Limbo provides 16 management tools:
 | `limbo_list_kits`       | List available kits              |
 | `limbo_kit_info`        | Get kit information              |
 
-## 🎛️ Configuration
+## Configuration
 
 Limbo stores configuration in `.limbo/config.json` with automatic hot-reloading.
 
@@ -173,7 +173,7 @@ Limbo stores configuration in `.limbo/config.json` with automatic hot-reloading.
 }
 ```
 
-## 🔐 Authentication
+## Authentication
 
 Limbo supports optional JWT-based authentication:
 
@@ -188,7 +188,7 @@ limbo auth token
 export LIMBO_JWT=$(limbo auth token -q)
 ```
 
-## 🐳 Docker MCP Gateway Integration
+## Docker MCP Gateway Integration
 
 Add Limbo to Docker MCP Gateway:
 
@@ -202,7 +202,7 @@ docker mcp catalog add custom limbo ./limbo-catalog.yaml
 docker mcp server enable limbo
 ```
 
-## 📚 CLI Commands
+## CLI Commands
 
 ```bash
 # Server management
@@ -228,7 +228,7 @@ limbo auth token                     # Generate JWT token
 limbo config path                    # Show config location
 ```
 
-## 🎓 Use Cases
+## Use Cases
 
 ### Development
 
@@ -246,7 +246,7 @@ Provide different tool sets to different users without separate deployments.
 
 Only run the tools you actually need at any given time.
 
-## 🏆 Features
+## Features
 
 - **Dynamic Tool Loading** - Add/remove tools without restart
 - **Auto-Reload Configuration** - Changes apply instantly
@@ -257,7 +257,7 @@ Only run the tools you actually need at any given time.
 - **Docker Ready** - Production-ready containers
 - **Multiple Transports** - stdio, HTTP, or hybrid
 
-## 🛣️ Roadmap
+## Roadmap
 
 - [ ] Tool marketplace/discovery
 - [ ] Metrics and analytics dashboard
@@ -265,7 +265,7 @@ Only run the tools you actually need at any given time.
 - [ ] Plugin system for custom tools
 - [ ] Cloud deployment templates
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! This project is open source under AGPL-3.0.
 
@@ -274,15 +274,7 @@ Contributions welcome! This project is open source under AGPL-3.0.
 3. Make your changes
 4. Submit a pull request
 
-## 📜 License
-
-AGPL-3.0 - see [LICENSE](license.md) for details.
-
-## 🙏 Acknowledgments
-
-Based on [Magg](https://github.com/sitbon/magg) by Phillip Sitbon. Thank you for the amazing foundation!
-
-## 🔗 Links
+## Links
 
 - **Docker Hub**: https://hub.docker.com/r/pr33th4m/l1mbo
 - **GitHub**: https://github.com/Pritz395/limbo
