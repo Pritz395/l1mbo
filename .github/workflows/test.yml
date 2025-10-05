@@ -4,14 +4,14 @@ on:
   push:
     branches: ['*']
     paths:
-      - 'magg/**'
+      - 'limbo/**'
       - 'tests/**'
       - 'pyproject.toml'
       - 'uv.lock'
   pull_request:
     branches: ['*']
     paths:
-      - 'magg/**'
+      - 'limbo/**'
       - 'tests/**'
       - 'pyproject.toml'
       - 'uv.lock'

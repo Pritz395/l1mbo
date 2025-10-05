@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-"""Demo of embedding Magg server in applications.
+"""Demo of embedding Limbo server in applications.
 
-This example shows how to run Magg server programmatically and
+This example shows how to run Limbo server programmatically and
 connect to it using the in-memory client.
 """
 import asyncio
@@ -9,7 +9,7 @@ import logging
 import os
 import sys
 
-from magg.server.runner import MaggRunner
+from limbo.server.runner import LimboRunner
 
 # Suppress noisy logs for cleaner demo output
 logging.getLogger("uvicorn.error").setLevel(logging.CRITICAL)
@@ -18,18 +18,18 @@ logging.getLogger("mcp.client.streamable_http").setLevel(logging.CRITICAL)
 
 
 async def in_memory_client_example():
-    """Example using in-memory client to connect to Magg."""
+    """Example using in-memory client to connect to Limbo."""
     print("=== In-Memory Client Example ===")
 
-    # Create runner (uses config from ./.magg/config.json if available)
-    async with MaggRunner() as runner:
-        # The `async with` simply ensures that the MaggServer is properly set up even when not running as a server.
+    # Create runner (uses config from ./.limbo/config.json if available)
+    async with LimboRunner() as runner:
+        # The `async with` simply ensures that the LimboServer is properly set up even when not running as a server.
 
         # Access the in-memory client
         client = runner.client
         print(f"Client created: {client}")
 
-        # Use the client to interact with Magg
+        # Use the client to interact with Limbo
         async with client:
             tools = await client.list_tools()
             print(f"\nFound {len(tools)} tools:")
@@ -42,19 +42,19 @@ async def in_memory_client_example():
                 print(f"  ... and {len(tools) - 5} more")
 
             # Call a tool
-            result = await client.call_tool("magg_list_servers", {})
+            result = await client.call_tool("limbo_list_servers", {})
             print(f"\nServers: {result}")
 
     print("\n")
 
 
 async def run_http_server():
-    """Example of running Magg as an HTTP server."""
+    """Example of running Limbo as an HTTP server."""
     print("=== HTTP Server Example ===")
-    print("Starting Magg HTTP server on http://localhost:8080")
+    print("Starting Limbo HTTP server on http://localhost:8080")
     print("Press Ctrl+C to stop\n")
 
-    runner = MaggRunner()
+    runner = LimboRunner()
 
     # This will run until interrupted
     try:
@@ -67,7 +67,7 @@ async def concurrent_server_and_client():
     """Example of running server and using client concurrently."""
     print("=== Concurrent Server & Client Example ===")
 
-    runner = MaggRunner()
+    runner = LimboRunner()
 
     stderr_prev = sys.stderr
 
@@ -84,7 +84,7 @@ async def concurrent_server_and_client():
 
             # Use the in-memory client
             async with runner.client as session:
-                print("Connected to Magg server")
+                print("Connected to Limbo server")
 
                 # List and call tools
                 tools = await session.list_tools()
@@ -92,8 +92,8 @@ async def concurrent_server_and_client():
 
                 # Try to call a tool
                 try:
-                    result = await session.call_tool("magg_list_servers", {})
-                    print("Successfully called magg_list_servers")
+                    result = await session.call_tool("limbo_list_servers", {})
+                    print("Successfully called limbo_list_servers")
                 except Exception as e:
                     print(f"Tool call error: {e}")
 
@@ -124,5 +124,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    print("Magg Server Embedding Examples\n")
+    print("Limbo Server Embedding Examples\n")
     asyncio.run(main())

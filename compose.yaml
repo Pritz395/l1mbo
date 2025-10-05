@@ -1,4 +1,4 @@
-name: magg
+name: limbo
 
 services:
   base:
@@ -6,60 +6,60 @@ services:
     build:
       dockerfile: dockerfile
       args:
-        MAGG_READ_ONLY: ${MAGG_READ_ONLY:-false}
+        LIMBO_READ_ONLY: ${LIMBO_READ_ONLY:-false}
     environment:
-      MAGG_PRIVATE_KEY: ${MAGG_PRIVATE_KEY:-}
-      MAGG_LOG_LEVEL: ${MAGG_LOG_LEVEL:-}
-      MAGG_CONFIG_PATH: ${MAGG_CONFIG_PATH:-}
-      MAGG_SELF_PREFIX: ${MAGG_SELF_PREFIX:-}
-      MAGG_AUTO_RELOAD: ${MAGG_AUTO_RELOAD:-false}
-      MAGG_RELOAD_POLL_INTERVAL: ${MAGG_RELOAD_POLL_INTERVAL:-}
-      MAGG_RELOAD_USE_WATCHDOG: ${MAGG_RELOAD_USE_WATCHDOG:-}
-      MAGG_STDERR_SHOW: ${MAGG_STDERR_SHOW:-}
-      MAGG_PREFIX_SEP: ${MAGG_PREFIX_SEP:-}
+      LIMBO_PRIVATE_KEY: ${LIMBO_PRIVATE_KEY:-}
+      LIMBO_LOG_LEVEL: ${LIMBO_LOG_LEVEL:-}
+      LIMBO_CONFIG_PATH: ${LIMBO_CONFIG_PATH:-}
+      LIMBO_SELF_PREFIX: ${LIMBO_SELF_PREFIX:-}
+      LIMBO_AUTO_RELOAD: ${LIMBO_AUTO_RELOAD:-false}
+      LIMBO_RELOAD_POLL_INTERVAL: ${LIMBO_RELOAD_POLL_INTERVAL:-}
+      LIMBO_RELOAD_USE_WATCHDOG: ${LIMBO_RELOAD_USE_WATCHDOG:-}
+      LIMBO_STDERR_SHOW: ${LIMBO_STDERR_SHOW:-}
+      LIMBO_PREFIX_SEP: ${LIMBO_PREFIX_SEP:-}
     volumes:
-      - ${MAGG_CONFIG_VOLUME:-magg-config}:/home/magg/.magg
+      - ${LIMBO_CONFIG_VOLUME:-limbo-config}:/home/limbo/.limbo
     networks:
-      - magg-network
+      - limbo-network
     restart: unless-stopped
 
-  magg:
+  limbo:
     extends:
       service: base
     build:
       target: pro
-    image: ${REGISTRY:-}${REGISTRY:+/}magg:${SOURCE:-${USER}}-pro
-    container_name: magg-server
+    image: ${REGISTRY:-}${REGISTRY:+/}limbo:${SOURCE:-${USER}}-pro
+    container_name: limbo-server
     ports:
       - "8000:8000"
 
-  magg-beta:
+  limbo-beta:
     extends:
       service: base
     build:
       target: pre
-    image: ${REGISTRY:-}${REGISTRY:+/}magg:${SOURCE:-${USER}}-pre
-    container_name: magg-server-pre
+    image: ${REGISTRY:-}${REGISTRY:+/}limbo:${SOURCE:-${USER}}-pre
+    container_name: limbo-server-pre
     ports:
       - "8001:8000"
 
-  magg-dev:
+  limbo-dev:
     extends:
       service: base
     build:
       target: dev
     environment:
-      MAGG_AUTO_RELOAD: ${MAGG_AUTO_RELOAD:-true}
-    image: ${REGISTRY:-}${REGISTRY:+/}magg:${SOURCE:-${USER}}-dev
-    container_name: magg-server-dev
+      LIMBO_AUTO_RELOAD: ${LIMBO_AUTO_RELOAD:-true}
+    image: ${REGISTRY:-}${REGISTRY:+/}limbo:${SOURCE:-${USER}}-dev
+    container_name: limbo-server-dev
     ports:
       - "8008:8000"
     volumes:
-      - ./.magg:/home/magg/.magg:rw
+      - ./.limbo:/home/limbo/.limbo:rw
 
 volumes:
-  magg-config:
+  limbo-config:
 
 networks:
-  magg-network:
+  limbo-network:
     driver: bridge

@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Example demonstrating Magg's messaging and notifications feature.
+"""Example demonstrating Limbo's messaging and notifications feature.
 
-This example shows how to use MaggClient with message handlers to receive
+This example shows how to use LimboClient with message handlers to receive
 notifications from backend MCP servers.
 """
 import asyncio
 import mcp.types
-from magg import MaggClient, MaggMessageHandler
+from limbo import LimboClient, LimboMessageHandler
 
 
-class CustomMessageHandler(MaggMessageHandler):
+class CustomMessageHandler(LimboMessageHandler):
     """Custom message handler that logs all notifications."""
 
     def __init__(self):
@@ -60,20 +60,20 @@ async def callback_example():
             print(f"⏳ [Callback] Progress: {notification.params.progress}")
 
     # Create handler with callbacks
-    handler = MaggMessageHandler(
+    handler = LimboMessageHandler(
         on_tool_list_changed=on_tool_change,
         on_progress=on_progress
     )
 
     # Create client with message handler
-    client = MaggClient(
+    client = LimboClient(
         "http://localhost:8000/mcp/",  # MCP endpoint with trailing slash
         message_handler=handler
     )
 
     try:
         async with client:
-            print("✅ Connected to Magg server with message handling")
+            print("✅ Connected to Limbo server with message handling")
 
             # List tools to see what's available
             tools = await client.list_tools()
@@ -97,14 +97,14 @@ async def class_example():
     handler = CustomMessageHandler()
 
     # Create client with message handler
-    client = MaggClient(
+    client = LimboClient(
         "http://localhost:8000/mcp/",  # MCP endpoint with trailing slash
         message_handler=handler
     )
 
     try:
         async with client:
-            print("✅ Connected to Magg server with custom message handler")
+            print("✅ Connected to Limbo server with custom message handler")
 
             # List available capabilities
             tools = await client.list_tools()
@@ -130,11 +130,11 @@ async def class_example():
 
 async def main():
     """Run both examples."""
-    print("🧲 Magg Messaging Example")
+    print("🧲 Limbo Messaging Example")
     print("=" * 50)
     print()
-    print("This example demonstrates Magg's real-time messaging capabilities.")
-    print("Make sure you have a Magg server running at http://localhost:8000")
+    print("This example demonstrates Limbo's real-time messaging capabilities.")
+    print("Make sure you have a Limbo server running at http://localhost:8000")
     print()
 
     # Run callback example

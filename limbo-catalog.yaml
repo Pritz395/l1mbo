@@ -1,0 +1,48 @@
+version: "1.0"
+servers:
+  limbo:
+    name: limbo
+    description: "Limbo - The MCP Aggregator. AI's extra limbs - dynamically loads MCP servers on demand."
+    version: "1.0.0"
+    homepage: "https://github.com/Pritz395/limbo"
+    vendor: "Preetham (pr3th4m)"
+    license: "AGPL-3.0"
+    labels:
+      - aggregator
+      - proxy
+      - meta-server
+      - mcp-manager
+      - dynamic-loading
+    runtime: docker
+    image: pr3th4m/limbo:latest
+    command:
+      - limbo
+      - serve
+      - --http
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8000"
+    transport: http
+    port: 8000
+    healthcheck:
+      enabled: true
+      path: /
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - type: named
+        source: limbo-config
+        target: /home/limbo/.limbo
+    environment:
+      LIMBO_LOG_LEVEL: INFO
+      LIMBO_AUTO_RELOAD: "true"
+    capabilities:
+      - Server management (add, remove, enable, disable MCP servers)
+      - Dynamic tool aggregation from multiple servers
+      - Health monitoring and status checks
+      - Configuration hot-reloading
+      - Tool prefixing to avoid conflicts
+      - AI-driven MCP server discovery and installation
+

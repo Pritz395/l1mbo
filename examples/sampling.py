@@ -3,7 +3,7 @@
 # dependencies = [
 # "anthropic>=0.54.0",
 # "fastmcp<3",
-# "magg>=0.3.4",
+# "limbo>=0.3.4",
 # ]
 # ///
 """This example demonstrates how to use the FastMCP client with a custom sampling handler.
@@ -24,7 +24,7 @@ from fastmcp.client.sampling import (
 from mcp.types import CreateMessageRequestParams
 from rich.traceback import install
 
-from magg.util.transform import is_mcp_result_json_typed, extract_mcp_result_json, get_mcp_result_contents
+from limbo.util.transform import is_mcp_result_json_typed, extract_mcp_result_json, get_mcp_result_contents
 
 mcp_url = "http://localhost:8000/mcp"
 
@@ -61,7 +61,7 @@ async def main():
     async with client:
         # Call a tool that uses sampling
         result = await client.call_tool(
-            name="magg_smart_configure",
+            name="limbo_smart_configure",
             arguments={
                 "source": "https://github.com/wrtnlabs/calculator-mcp"
             },

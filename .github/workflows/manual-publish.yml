@@ -139,7 +139,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ env.VERSION }}
-          name: 🧲 Magg Release v${{ env.VERSION }}
+          name: 🧲 Limbo Release v${{ env.VERSION }}
           body: |
             ***Note: This is a manual release. PyPI availability depends on the type of release (pre, post, or dev).***
             
@@ -148,7 +148,7 @@ jobs:
             
             ## Installation
             ```bash
-            uv add magg==${{ env.VERSION }}
+            uv add limbo==${{ env.VERSION }}
             ```
           files: |
             dist/*.tar.gz

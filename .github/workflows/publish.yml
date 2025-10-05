@@ -148,14 +148,14 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG }}
-          name: 🧲 Magg Release v${{ env.VERSION }}
+          name: 🧲 Limbo Release v${{ env.VERSION }}
           body: |
             ## Changes
             ${{ env.CHANGELOG }}
 
             ## Installation
             ```bash
-            uv add magg==${{ env.VERSION }}
+            uv add limbo==${{ env.VERSION }}
             ```
           files: |
             dist/*.tar.gz

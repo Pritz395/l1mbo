@@ -8,35 +8,35 @@ import sys
 from pathlib import Path
 import logging
 
-# Add magg to path
+# Add limbo to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from magg.server.server.server import MaggServer
-from magg.server.runner import MaggRunner
-from magg import process
+from limbo.server.server.server import LimboServer
+from limbo.server.runner import LimboRunner
+from limbo import process
 
-process.setup(MAGG_LOG_LEVEL="INFO")
+process.setup(LIMBO_LOG_LEVEL="INFO")
 logger = logging.getLogger(__name__)
 
 
 async def demo_config_reload():
     """Demonstrate config reloading with file watching."""
-    config_path = Path(".magg") / "config.json"
+    config_path = Path(".limbo") / "config.json"
 
     logger.setLevel(logging.INFO)
     logger.info(
-        """Starting Magg server with config reloading enabled
+        """Starting Limbo server with config reloading enabled
 Config path: %s
 You can:
   1. Modify the config file to see automatic reload
   2. Send SIGHUP signal to trigger reload: kill -HUP %d
-  3. Use the magg_reload_config tool via MCP client
+  3. Use the limbo_reload_config tool via MCP client
 
 Press Ctrl+C to stop""",
         config_path, os.getpid(),
     )
 
-    runner = MaggRunner(config_path)
+    runner = LimboRunner(config_path)
 
     try:
         await runner.run_http("localhost", 8000)
@@ -46,11 +46,11 @@ Press Ctrl+C to stop""",
 
 async def demo_manual_reload():
     """Demonstrate manual config reload."""
-    config_path = Path.home() / ".magg" / "config.json"
+    config_path = Path.home() / ".limbo" / "config.json"
 
     logger.info("Demonstrating manual config reload")
 
-    server = MaggServer(str(config_path), enable_config_reload=False)
+    server = LimboServer(str(config_path), enable_config_reload=False)
     async with server:
         # Show current servers
         logger.info("Current servers:")

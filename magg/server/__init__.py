@@ -1,2 +1,0 @@
-"""Magg Server Management
-"""

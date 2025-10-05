@@ -1,9 +1,9 @@
 [project]
-name = "magg"
-version = "0.10.1"
+name = "limbo"
+version = "1.0.0"
 requires-python = ">=3.12"
-description = "MCP Aggregator"
-authors = [{ name = "Phillip Sitbon", email = "phillip.sitbon@gmail.com"}]
+description = "Limbo - MCP Aggregator with Dynamic Tool Loading"
+authors = [{ name = "Preetham", email = "preetham@example.com"}]
 readme = "readme.md"
 license = {text = "AGPL-3.0-or-later"}
 license-files = ["license.md"]
@@ -33,6 +33,7 @@ keywords = [
     "mcp",
     "aggregator",
     "proxy",
+    "limbo",
     "fastmcp",
     "aiohttp",
     "pydantic",
@@ -41,7 +42,7 @@ keywords = [
 ]
 
 packages = [
-    {include = "magg"},
+    {include = "limbo"},
     {include = "test", format = "sdist"},
 ]
 
@@ -68,15 +69,15 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sitbon/magg"
-Repository = "https://github.com/sitbon/magg.git"
-Documentation = "https://github.com/sitbon/magg#readme"
-Issues = "https://github.com/sitbon/magg/issues"
-"Release Notes" = "https://github.com/sitbon/magg/releases"
+Homepage = "https://github.com/Pritz395/limbo"
+Repository = "https://github.com/Pritz395/limbo.git"
+Documentation = "https://github.com/Pritz395/limbo#readme"
+Issues = "https://github.com/Pritz395/limbo/issues"
+"Release Notes" = "https://github.com/Pritz395/limbo/releases"
 
 [project.scripts]
-magg = "magg.cli:main"
-mbro = "magg.mbro.cli:main"
+limbo = "limbo.cli:main"
+mbro = "limbo.mbro.cli:main"
 
 [project.optional-dependencies]
 test = [

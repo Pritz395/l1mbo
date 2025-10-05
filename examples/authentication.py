@@ -4,7 +4,7 @@
 This script demonstrates:
 1. Bearer token authentication with configurable environment variables
 2. Direct token passing
-3. Using the MaggClient for automatic authentication
+3. Using the LimboClient for automatic authentication
 """
 import argparse
 import asyncio
@@ -15,7 +15,7 @@ from typing import Any
 
 from fastmcp import Client
 from fastmcp.client import BearerAuth
-from magg.client import MaggClient
+from limbo.client import LimboClient
 
 
 async def bearer_auth(args: argparse.Namespace) -> None:
@@ -29,20 +29,20 @@ async def bearer_auth(args: argparse.Namespace) -> None:
 
     print(f"Connecting to {args.url} with bearer token authentication...")
 
-    if args.magg:
-        # Use MaggClient
-        print(f"Using MaggClient{' with provided token' if args.token else f' (loading from {args.env_var})'}")
+    if args.limbo:
+        # Use LimboClient
+        print(f"Using LimboClient{' with provided token' if args.token else f' (loading from {args.env_var})'}")
 
-        # If using custom env var, set MAGG_JWT for MaggClient
-        if args.env_var != "MAGG_JWT" and not args.token:
-            os.environ["MAGG_JWT"] = jwt
+        # If using custom env var, set LIMBO_JWT for LimboClient
+        if args.env_var != "LIMBO_JWT" and not args.token:
+            os.environ["LIMBO_JWT"] = jwt
 
         if args.token:
             auth = BearerAuth(args.token)
-            client = MaggClient(args.url, auth=auth)
+            client = LimboClient(args.url, auth=auth)
         else:
-            # Let MaggClient handle auth from MAGG_JWT env var
-            client = MaggClient(args.url)
+            # Let LimboClient handle auth from LIMBO_JWT env var
+            client = LimboClient(args.url)
 
         async with client:
             print(f"Transparent proxy mode: {client._transparent}")
@@ -124,11 +124,11 @@ Examples:
   # Test with direct token
   %(prog)s bearer --token "eyJ..."
 
-  # Test using MaggClient (auto-loads from MAGG_JWT)
-  %(prog)s bearer --magg
+  # Test using LimboClient (auto-loads from LIMBO_JWT)
+  %(prog)s bearer --limbo
 
-  # Test MaggClient with direct token
-  %(prog)s bearer --magg --token "eyJ..."
+  # Test LimboClient with direct token
+  %(prog)s bearer --limbo --token "eyJ..."
 """
     )
 
@@ -153,17 +153,17 @@ Examples:
     )
     bearer_parser.add_argument(
         "--env-var",
-        default="MAGG_JWT",
-        help="Environment variable name for JWT (default: MAGG_JWT)"
+        default="LIMBO_JWT",
+        help="Environment variable name for JWT (default: LIMBO_JWT)"
     )
     bearer_parser.add_argument(
         "--token",
         help="JWT token (overrides environment variable)"
     )
     bearer_parser.add_argument(
-        "--magg",
+        "--limbo",
         action="store_true",
-        help="Use MaggClient instead of regular FastMCP Client"
+        help="Use LimboClient instead of regular FastMCP Client"
     )
 
     return parser

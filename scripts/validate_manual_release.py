@@ -19,7 +19,7 @@ from packaging.version import Version
 def validate_version():
     """Validate that the current version is suitable for manual release."""
     try:
-        version_str = get_version("magg")
+        version_str = get_version("limbo")
         version = Version(version_str)
     except Exception as e:
         result = {
