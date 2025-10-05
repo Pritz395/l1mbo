@@ -11,6 +11,7 @@ Limbo is a meta-MCP server that lets AI assistants install and manage their own 
 ## 🎯 The Problem
 
 Setting up Model Context Protocol (MCP) tools is tedious:
+
 - Edit config files manually
 - Restart everything for changes
 - Manage 10+ server configurations
@@ -21,6 +22,7 @@ Setting up Model Context Protocol (MCP) tools is tedious:
 ## 💡 The Solution
 
 Limbo aggregates multiple MCP servers into one unified interface and lets your AI dynamically:
+
 - ✅ Install new tools on-demand
 - ✅ Remove unused tools
 - ✅ Manage configurations automatically
@@ -60,16 +62,19 @@ limbo serve --http
 ## 🎮 Usage
 
 ### Stdio Mode (for Claude Desktop, Cursor, etc.)
+
 ```bash
 limbo serve
 ```
 
 ### HTTP Mode (for system-wide access)
+
 ```bash
 limbo serve --http --port 8000
 ```
 
 ### Hybrid Mode (both stdio + HTTP)
+
 ```bash
 limbo serve --hybrid
 ```
@@ -77,6 +82,7 @@ limbo serve --hybrid
 ## 🛠️ Example Workflow
 
 **Without Limbo:**
+
 ```
 You: "I need filesystem access"
 AI: "Please configure the filesystem tool, restart me, and try again."
@@ -85,6 +91,7 @@ AI: "Okay, ready now."
 ```
 
 **With Limbo:**
+
 ```
 You: "I need filesystem access"
 AI: *calls limbo_add_server()* → Tool installed
@@ -114,24 +121,24 @@ AI: "Done. Which file do you need?"
 
 Once connected, Limbo provides 16 management tools:
 
-| Tool | Purpose |
-|------|---------|
-| `limbo_add_server` | Dynamically install MCP servers |
-| `limbo_list_servers` | View all configured servers |
-| `limbo_remove_server` | Remove servers |
-| `limbo_enable_server` | Enable disabled servers |
-| `limbo_disable_server` | Temporarily disable servers |
-| `limbo_status` | Health check and statistics |
-| `limbo_search_servers` | Find MCP servers online |
-| `limbo_list_tools` | List all available tools |
-| `limbo_smart_configure` | Auto-configure from URL |
+| Tool                    | Purpose                          |
+| ----------------------- | -------------------------------- |
+| `limbo_add_server`      | Dynamically install MCP servers  |
+| `limbo_list_servers`    | View all configured servers      |
+| `limbo_remove_server`   | Remove servers                   |
+| `limbo_enable_server`   | Enable disabled servers          |
+| `limbo_disable_server`  | Temporarily disable servers      |
+| `limbo_status`          | Health check and statistics      |
+| `limbo_search_servers`  | Find MCP servers online          |
+| `limbo_list_tools`      | List all available tools         |
+| `limbo_smart_configure` | Auto-configure from URL          |
 | `limbo_analyze_servers` | Analyze and suggest improvements |
-| `limbo_check` | Health check with repair actions |
-| `limbo_reload_config` | Reload config without restart |
-| `limbo_load_kit` | Load server bundles |
-| `limbo_unload_kit` | Unload server bundles |
-| `limbo_list_kits` | List available kits |
-| `limbo_kit_info` | Get kit information |
+| `limbo_check`           | Health check with repair actions |
+| `limbo_reload_config`   | Reload config without restart    |
+| `limbo_load_kit`        | Load server bundles              |
+| `limbo_unload_kit`      | Unload server bundles            |
+| `limbo_list_kits`       | List available kits              |
+| `limbo_kit_info`        | Get kit information              |
 
 ## 🎛️ Configuration
 
@@ -139,13 +146,13 @@ Limbo stores configuration in `.limbo/config.json` with automatic hot-reloading.
 
 ### Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `LIMBO_CONFIG_PATH` | Config file location | `.limbo/config.json` |
-| `LIMBO_LOG_LEVEL` | Logging level | `INFO` |
-| `LIMBO_AUTO_RELOAD` | Enable config auto-reload | `true` |
-| `LIMBO_SELF_PREFIX` | Tool prefix | `limbo` |
-| `LIMBO_READ_ONLY` | Read-only mode | `false` |
+| Variable            | Description               | Default              |
+| ------------------- | ------------------------- | -------------------- |
+| `LIMBO_CONFIG_PATH` | Config file location      | `.limbo/config.json` |
+| `LIMBO_LOG_LEVEL`   | Logging level             | `INFO`               |
+| `LIMBO_AUTO_RELOAD` | Enable config auto-reload | `true`               |
+| `LIMBO_SELF_PREFIX` | Tool prefix               | `limbo`              |
+| `LIMBO_READ_ONLY`   | Read-only mode            | `false`              |
 
 ### Example Configuration
 
@@ -224,15 +231,19 @@ limbo config path                    # Show config location
 ## 🎓 Use Cases
 
 ### Development
+
 Install tools as you need them during development without context switching.
 
 ### CI/CD
+
 Dynamically provision tools based on pipeline requirements.
 
 ### Multi-tenant
+
 Provide different tool sets to different users without separate deployments.
 
 ### Cost Optimization
+
 Only run the tools you actually need at any given time.
 
 ## 🏆 Features
